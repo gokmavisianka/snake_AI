@@ -323,9 +323,9 @@ class Keyboard:
             if event.type == pygame.KEYDOWN:
                 # Press 'Q' to quit.
                 if event.key == pygame.K_q:
-                    print(Q.q_table)
                     pygame.quit()
                     quit()
+                # Press 'F' to speed up the process, or vice versa.
                 if event.key == pygame.K_f:
                     if FPS == 5:
                         FPS = 999999
@@ -335,12 +335,14 @@ class Keyboard:
                     snake.move(action="right")
                 elif event.key == pygame.K_LEFT:
                     snake.move(action="left")
+                # Press "Arrow Down" to decrease the exploration rate by 0.1
                 elif event.key == pygame.K_DOWN:
                     if Q.exploration_rate > 0.1:
                         Q.exploration_rate = round(Q.exploration_rate - 0.1, 1)
                     else:
                         Q.exploration_rate = 0.0
                     print(f"--- Exploration rate: {Q.exploration_rate}")
+                # Press "Arrow Up" to increase the exploration rate by 0.1
                 elif event.key == pygame.K_UP:
                     if Q.exploration_rate < 0.9:
                         Q.exploration_rate = round(Q.exploration_rate + 0.1, 1)
